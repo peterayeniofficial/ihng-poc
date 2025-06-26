@@ -10,11 +10,11 @@ export default function HcpControlPanel() {
 	const [showConnections, setShowConnections] = useState(true);
 	const [showConnectionsOnMap, setShowConnectionsOnMap] = useState(true);
 	return (
-		<header className="bg-white border-b border-gray-200 px-6 py-4 w-full">
+		<header className="py-4 w-full">
 			<div className="flex justify-between">
 				<Card className="w-[80%]">
 					<CardContent className="flex items-start justify-between space-y-2">
-						<div className="flex items-center space-x-4">
+						<div className="mt-4 flex space-x-4">
 							<Avatar className="h-12 w-12">
 								<AvatarImage
 									src="/placeholder.svg?height=48&width=48"
@@ -26,7 +26,7 @@ export default function HcpControlPanel() {
 								<h1 className="text-xl font-semibold text-gray-900">
 									Emily Carter
 								</h1>
-								<p className="text-sm text-gray-500">Cardiologist at Mercy</p>
+								<p className="text-sm text-gray-500">Cardiologist at NHOG</p>
 							</div>
 						</div>
 
