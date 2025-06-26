@@ -20,3 +20,26 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 
 ![Untitled-2023-05-30-1150-new](https://github.com/user-attachments/assets/cf3ad082-c0de-4719-b2fe-ecc8d5b93a24)
+
+## 🚀 Project Setup Checklist
+
+- [ ] Setup GitHub repository
+- [ ] Scaffold app with Next.js
+- [ ] Setup design system
+- [ ] Setup Playwright for E2E testing
+- [ ] Setup deployment to Vercel to ensure everything works
+
+## 🧱 Core Implementation
+
+- [ ] Implement main dashboard page
+- [ ] Implement components:
+  - [ ] Navigation
+  - [ ] HCP Stats
+  - [ ] HCP Connection Search
+  - [ ] HCP Details Information
+
+## 📊 Data & Visualization
+
+- [ ] Research visualizing network graphs in React
+- [ ] Implement POV (Proof of Value)
+- [ ] Integrate datagit add 
