@@ -32,8 +32,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## 🧱 Core Implementation
 
 - [x] Implement main dashboard page
-- [ ] Implement components:
-  - [ ] Navigation
+- [x] Implement components:
+  - [x] Navigation
   - [ ] HCP Stats
   - [ ] HCP Connection Search
   - [ ] HCP Details Information
