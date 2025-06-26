@@ -27,11 +27,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [x] Scaffold app with Next.js
 - [x] Setup design system
 - [x] Setup Playwright for E2E testing
-- [ ] Setup deployment to Vercel to ensure everything works
+- [x] Setup deployment to Vercel to ensure everything works
 
 ## 🧱 Core Implementation
 
-- [ ] Implement main dashboard page
+- [x] Implement main dashboard page
 - [ ] Implement components:
   - [ ] Navigation
   - [ ] HCP Stats
