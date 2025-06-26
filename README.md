@@ -36,10 +36,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   - [x] Navigation
   - [x] HCP Stats
   - [x] HCP Connection Search
-  - [ ] HCP Details Information
+  - [x] HCP Details Information
 
 ## 📊 Data & Visualization
 
 - [ ] Research visualizing network graphs in React
 - [ ] Implement POV (Proof of Value)
-- [ ] Integrate datagit add 
+- [ ] Integrate data
