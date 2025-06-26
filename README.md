@@ -23,10 +23,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## 🚀 Project Setup Checklist
 
-- [ ] Setup GitHub repository
-- [ ] Scaffold app with Next.js
-- [ ] Setup design system
-- [ ] Setup Playwright for E2E testing
+- [x] Setup GitHub repository
+- [x] Scaffold app with Next.js
+- [x] Setup design system
+- [x] Setup Playwright for E2E testing
 - [ ] Setup deployment to Vercel to ensure everything works
 
 ## 🧱 Core Implementation
