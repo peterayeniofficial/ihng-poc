@@ -34,8 +34,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [x] Implement main dashboard page
 - [x] Implement components:
   - [x] Navigation
-  - [ ] HCP Stats
-  - [ ] HCP Connection Search
+  - [x] HCP Stats
+  - [x] HCP Connection Search
   - [ ] HCP Details Information
 
 ## 📊 Data & Visualization
