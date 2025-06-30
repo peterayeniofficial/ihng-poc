@@ -1,9 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { HCP } from "@/types/hcp";
 
-export default function HCPDetails() {
+interface HCPDetailsProps {
+  selectedHCP: HCP | null
+  onClose: () => void
+}
+
+export default function HCPDetails({ selectedHCP, onClose }: HCPDetailsProps) {
 	return (
 		<div className="flex flex-col gap-6 w-[40%]">
 			<Card className="bg-gradient-to-br from-blue-50 to-purple-50">
@@ -12,14 +19,14 @@ export default function HCPDetails() {
 						<Avatar className="h-20 w-20 mx-auto border-4 border-white shadow-lg">
 							<AvatarImage
 								src="/placeholder.svg?height=80&width=80"
-								alt="Dr. Emily Carter"
+								alt="Dr. Dr. Sarah Johnson"
 							/>
-							<AvatarFallback>EC</AvatarFallback>
+							<AvatarFallback>SJ</AvatarFallback>
 						</Avatar>
 
 						<div>
-							<h3 className="font-semibold text-lg">Dr. Emily Carter</h3>
-							<p className="text-sm text-gray-600">Cardiologist • 26 years</p>
+							<h3 className="font-semibold text-lg">{selectedHCP?.name}</h3>
+							<p className="text-sm text-gray-600">{selectedHCP?.title} • {selectedHCP?.yearsOfExperience} years</p>
 						</div>
 
 						<p className="text-sm text-gray-700 leading-relaxed">

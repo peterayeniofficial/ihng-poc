@@ -18,15 +18,15 @@ export default function HcpControlPanel() {
 							<Avatar className="h-12 w-12">
 								<AvatarImage
 									src="/placeholder.svg?height=48&width=48"
-									alt="Emily Carter"
+									alt="Dr. Sarah Johnson"
 								/>
-								<AvatarFallback>EC</AvatarFallback>
+								<AvatarFallback>SJ</AvatarFallback>
 							</Avatar>
 							<div>
 								<h1 className="text-xl font-semibold text-gray-900">
-									Emily Carter
+									Dr. Sarah Johnson
 								</h1>
-								<p className="text-sm text-gray-500">Cardiologist at NHOG</p>
+								<p className="text-sm text-gray-500">Chief of Cardiology</p>
 							</div>
 						</div>
 
