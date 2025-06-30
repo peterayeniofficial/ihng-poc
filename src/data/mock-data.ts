@@ -179,7 +179,16 @@ export const mockHCPData: HCP[] = [
   },
 ]
 
-export function createNetworkData(centerHcpId: string): { nodes: Node[]; edges: Edge[] } {
+export function createNetworkData(
+  centerHcpId: string,
+  {
+    onHover,
+    onUnhover
+  }: {
+    onHover?: (hcp: HCP) => void
+    onUnhover?: () => void
+  } = {}
+): { nodes: Node[]; edges: Edge[] } {
   const centerHcp = mockHCPData.find((hcp) => hcp.id === centerHcpId)
   if (!centerHcp) return { nodes: [], edges: [] }
 
@@ -196,7 +205,10 @@ export function createNetworkData(centerHcpId: string): { nodes: Node[]; edges: 
       name: centerHcp.name,
       title: centerHcp.title,
       specialties: centerHcp.specialties,
+      yearsOfExperience: centerHcp.yearsOfExperience,
       isCenter: true,
+      onHover: () => onHover?.(centerHcp),
+      onUnhover: () => onUnhover?.(),
     },
   })
 
@@ -206,7 +218,6 @@ export function createNetworkData(centerHcpId: string): { nodes: Node[]; edges: 
     if (connectedHcp) {
       connectedHcpIds.add(connection.hcpId)
 
-      // Position nodes in a circle around the center
       const angle = (index * 2 * Math.PI) / centerHcp.connections.length
       const radius = 300
       const x = Math.cos(angle) * radius
@@ -220,11 +231,13 @@ export function createNetworkData(centerHcpId: string): { nodes: Node[]; edges: 
           name: connectedHcp.name,
           title: connectedHcp.title,
           specialties: connectedHcp.specialties,
+          yearsOfExperience: connectedHcp.yearsOfExperience,
           isCenter: false,
+          onHover: () => onHover?.(connectedHcp),
+          onUnhover: () => onUnhover?.(),
         },
       })
 
-      // Add edge
       edges.push({
         id: `${centerHcp.id}-${connectedHcp.id}`,
         source: centerHcp.id,
@@ -254,7 +267,6 @@ export function createNetworkData(centerHcpId: string): { nodes: Node[]; edges: 
           !connectedHcpIds.has(connection.hcpId) &&
           !nodes.find((n) => n.id === connection.hcpId)
         ) {
-          // Position second-degree nodes further out
           const angle = (secondDegreeIndex * 2 * Math.PI) / 8
           const radius = 500
           const x = Math.cos(angle) * radius
@@ -268,7 +280,10 @@ export function createNetworkData(centerHcpId: string): { nodes: Node[]; edges: 
               name: secondDegreeHcp.name,
               title: secondDegreeHcp.title,
               specialties: secondDegreeHcp.specialties,
+              yearsOfExperience: secondDegreeHcp.yearsOfExperience,
               isCenter: false,
+              onHover: () => onHover?.(secondDegreeHcp),
+              onUnhover: () => onUnhover?.(),
             },
           })
 

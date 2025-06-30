@@ -1,67 +1,23 @@
 "use client"
 
-import { memo } from "react"
-import { Handle, Position, type NodeProps } from "reactflow"
-import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Handle, NodeProps, Position } from "reactflow"
 import { User } from "lucide-react"
+import { cn } from "@/lib/utils"
 
-interface HCPNodeData {
-  name: string
-  title: string
-  specialties: string[]
-  isCenter?: boolean
-}
-
-function HCPNode({ data, selected }: NodeProps<HCPNodeData>) {
-  const { name, title, specialties, isCenter } = data
-
+export default function HCPNode({ data }: NodeProps) {
   return (
-    <>
-      <Handle type="target" position={Position.Top} className="opacity-0" />
-      <Handle type="source" position={Position.Bottom} className="opacity-0" />
-      <Handle type="target" position={Position.Left} className="opacity-0" />
-      <Handle type="source" position={Position.Right} className="opacity-0" />
-
-      <Card
-        className={`
-          min-w-[200px] cursor-pointer transition-all duration-200 hover:shadow-lg
-          ${isCenter ? "ring-2 ring-blue-500 shadow-lg scale-110" : ""}
-          ${selected ? "ring-2 ring-blue-300" : ""}
-        `}
-      >
-        <div className="p-3">
-          <div className="flex items-center gap-2 mb-2">
-            <div
-              className={`
-              w-8 h-8 rounded-full flex items-center justify-center
-              ${isCenter ? "bg-blue-600" : "bg-gray-100"}
-            `}
-            >
-              <User className={`w-4 h-4 ${isCenter ? "text-white" : "text-gray-600"}`} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className={`font-medium text-sm truncate ${isCenter ? "text-blue-900" : ""}`}>{name}</p>
-              <p className="text-xs text-gray-600 truncate">{title}</p>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap gap-1">
-            {specialties.slice(0, 2).map((specialty, index) => (
-              <Badge key={index} variant={isCenter ? "default" : "secondary"} className="text-xs">
-                {specialty}
-              </Badge>
-            ))}
-            {specialties.length > 2 && (
-              <Badge variant="outline" className="text-xs">
-                +{specialties.length - 2}
-              </Badge>
-            )}
-          </div>
-        </div>
-      </Card>
-    </>
+    <div
+      className={cn(
+        "w-12 h-12 rounded-full bg-blue-100 border border-blue-400 flex items-center justify-center shadow-md cursor-pointer relative",
+        data.isCenter ? "bg-blue-600 text-white" : ""
+      )}
+      onMouseEnter={data.onHover}
+      onMouseLeave={data.onUnhover}
+    >
+      <User className="w-6 h-6" />
+      {/* Handles are optional if you're using edges with arrows */}
+      <Handle type="source" position={Position.Right} style={{ opacity: 0 }} />
+      <Handle type="target" position={Position.Left} style={{ opacity: 0 }} />
+    </div>
   )
 }
-
-export default memo(HCPNode)

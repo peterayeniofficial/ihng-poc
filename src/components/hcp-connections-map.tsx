@@ -45,15 +45,19 @@ interface ConnectionData {
 }
 
 const [hoveredConnection, setHoveredConnection] = useState<ConnectionData | null>(null)
+const [hoveredHCP, setHoveredHCP] = useState<HCP | null>(null)
+
 
   // Load all nodes/edges on mount
-  useEffect(() => {
-    // Use focusedHCPId or fallback to the first mock HCP id
-    const centerId = focusedHCPId || (mockHCPData.length > 0 ? mockHCPData[0].id : "")
-    const { nodes: allNodes, edges: allEdges } = createNetworkData(centerId)
-    setNodes(allNodes)
-    setEdges(allEdges)
-  }, [setNodes, setEdges, focusedHCPId])
+ useEffect(() => {
+  const centerId = focusedHCPId || (mockHCPData.length > 0 ? mockHCPData[0].id : "")
+  const { nodes: allNodes, edges: allEdges } = createNetworkData(centerId, {
+    onHover: (hcp) => setHoveredHCP(hcp),
+    onUnhover: () => setHoveredHCP(null),
+  })
+  setNodes(allNodes)
+  setEdges(allEdges)
+}, [setNodes, setEdges, focusedHCPId])
 
   // Focus node when focusedHCPId changes
   useEffect(() => {
@@ -97,6 +101,27 @@ const [hoveredConnection, setHoveredConnection] = useState<ConnectionData | null
         <Background />
         <Controls />
       </ReactFlow>
+
+	  {hoveredHCP && (
+  <div className="absolute top-4 left-4 z-20">
+    <Card className="w-80">
+      <CardHeader>
+        <CardTitle className="text-base">{hoveredHCP.name}</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-1">
+        <p className="text-sm text-muted-foreground">{hoveredHCP.title}</p>
+        <p className="text-xs">Experience: {hoveredHCP.yearsOfExperience} years</p>
+        <div className="flex flex-wrap gap-1">
+          {hoveredHCP.specialties.map((s, idx) => (
+            <Badge key={idx} variant="secondary" className="text-xs">
+              {s}
+            </Badge>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  </div>
+)}
 
       {hoveredConnection && (
         <div className="absolute top-4 right-4 z-20">
