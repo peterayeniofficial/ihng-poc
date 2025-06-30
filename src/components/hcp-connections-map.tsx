@@ -86,67 +86,97 @@ const [hoveredHCP, setHoveredHCP] = useState<HCP | null>(null)
   }, [])
 
   return (
-    <div className="w-full h-screen relative">
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        nodeTypes={nodeTypes}
-        edgeTypes={edgeTypes}
-        onNodeClick={(_, node) => handleNodeClick(node.id)}
-        fitView
-        attributionPosition="bottom-left"
-      >
-        <Background />
-        <Controls />
-      </ReactFlow>
+   <div
+  className="w-full h-screen relative"
+  role="region"
+  aria-label="HCP Network Visualization"
+>
+  <ReactFlow
+    nodes={nodes}
+    edges={edges}
+    onNodesChange={onNodesChange}
+    onEdgesChange={onEdgesChange}
+    nodeTypes={nodeTypes}
+    edgeTypes={edgeTypes}
+    onNodeClick={(_, node) => handleNodeClick(node.id)}
+    fitView
+    attributionPosition="bottom-left"
+  >
+    <Background />
+    <Controls />
+  </ReactFlow>
 
-	  {hoveredHCP && (
-  <div className="absolute top-4 left-4 z-20">
-    <Card className="w-80">
-      <CardHeader>
-        <CardTitle className="text-base">{hoveredHCP.name}</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-1">
-        <p className="text-sm text-muted-foreground">{hoveredHCP.title}</p>
-        <p className="text-xs">Experience: {hoveredHCP.yearsOfExperience} years</p>
-        <div className="flex flex-wrap gap-1">
-          {hoveredHCP.specialties.map((s, idx) => (
-            <Badge key={idx} variant="secondary" className="text-xs">
-              {s}
-            </Badge>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
-  </div>
-)}
-
-      {hoveredConnection && (
-        <div className="absolute top-4 right-4 z-20">
-          <Card className="w-80">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm">Connection Details</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-gray-600 mb-2">
-                <strong>{hoveredConnection.source}</strong> ↔ <strong>{hoveredConnection.target}</strong>
-              </p>
-              <p className="text-sm">{hoveredConnection.description}</p>
-              <div className="flex gap-1 mt-2">
-                <Badge variant="secondary" className="text-xs">
-                  {hoveredConnection.type}
-                </Badge>
-                <Badge variant="outline" className="text-xs">
-                  {hoveredConnection.strength}
-                </Badge>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      )}
+  {hoveredHCP && (
+    <div
+      className="absolute top-4 left-4 z-20"
+      role="dialog"
+      aria-label={`Profile card for ${hoveredHCP.name}`}
+      aria-modal="false"
+    >
+      <Card className="w-80 shadow-lg border border-gray-200">
+        <CardHeader>
+          <CardTitle className="text-base">{hoveredHCP.name}</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-1">
+          <p className="text-sm text-muted-foreground">{hoveredHCP.title}</p>
+          <p className="text-xs" aria-label={`Years of experience: ${hoveredHCP.yearsOfExperience}`}>
+            Experience: {hoveredHCP.yearsOfExperience} years
+          </p>
+          <div className="flex flex-wrap gap-1">
+            {hoveredHCP.specialties.map((s, idx) => (
+              <Badge
+                key={idx}
+                variant="secondary"
+                className="text-xs"
+                aria-label={`Specialty: ${s}`}
+              >
+                {s}
+              </Badge>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
     </div>
+  )}
+
+  {hoveredConnection && (
+    <div
+      className="absolute top-4 right-4 z-20"
+      role="dialog"
+      aria-label={`Connection between ${hoveredConnection.source} and ${hoveredConnection.target}`}
+      aria-modal="false"
+    >
+      <Card className="w-80 shadow-lg border border-gray-200">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm">Connection Details</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-gray-600 mb-2">
+            <strong>{hoveredConnection.source}</strong> ↔ <strong>{hoveredConnection.target}</strong>
+          </p>
+          <p className="text-sm">{hoveredConnection.description}</p>
+          <div className="flex gap-1 mt-2">
+            <Badge
+              variant="secondary"
+              className="text-xs"
+              aria-label={`Connection type: ${hoveredConnection.type}`}
+            >
+              {hoveredConnection.type}
+            </Badge>
+            <Badge
+              variant="outline"
+              className="text-xs"
+              aria-label={`Connection strength: ${hoveredConnection.strength}`}
+            >
+              {hoveredConnection.strength}
+            </Badge>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  )}
+</div>
+
   )
 }
 
