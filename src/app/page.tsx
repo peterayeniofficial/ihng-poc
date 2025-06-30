@@ -1,11 +1,9 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
-import NetworkDetail from "@/components/network-detail"
+import NetworkDetail from "@/components/network-detail";
 
 export default function Page() {
-
-
 	return (
 		<SidebarProvider>
 			<AppSidebar />
@@ -20,5 +18,5 @@ export default function Page() {
 				</main>
 			</SidebarInset>
 		</SidebarProvider>
-	)
+	);
 }

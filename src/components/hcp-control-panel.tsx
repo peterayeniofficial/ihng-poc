@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import React, { useState } from "react"
-import { Switch } from "./ui/switch"
-import { Button } from "./ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
-import { Card, CardContent } from "./ui/card"
+import React, { useState } from "react";
+import { Switch } from "./ui/switch";
+import { Button } from "./ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Card, CardContent } from "./ui/card";
 
 export default function HcpControlPanel() {
-	const [showConnections, setShowConnections] = useState(true)
-	const [showConnectionsOnMap, setShowConnectionsOnMap] = useState(true)
+	const [showConnections, setShowConnections] = useState(true);
+	const [showConnectionsOnMap, setShowConnectionsOnMap] = useState(true);
 
 	return (
 		<header className="py-4 w-full">
@@ -59,7 +59,10 @@ export default function HcpControlPanel() {
 								aria-checked={showConnections}
 								className="data-[state=checked]:bg-blue-600"
 							/>
-							<label htmlFor="toggle-connections" className="text-sm text-gray-600">
+							<label
+								htmlFor="toggle-connections"
+								className="text-sm text-gray-600"
+							>
 								Show connections
 							</label>
 						</div>
@@ -72,7 +75,10 @@ export default function HcpControlPanel() {
 								aria-checked={showConnectionsOnMap}
 								className="data-[state=checked]:bg-blue-600"
 							/>
-							<label htmlFor="toggle-map-connections" className="text-sm text-gray-600">
+							<label
+								htmlFor="toggle-map-connections"
+								className="text-sm text-gray-600"
+							>
 								Show my connections on map
 							</label>
 						</div>
@@ -80,5 +86,5 @@ export default function HcpControlPanel() {
 				</Card>
 			</div>
 		</header>
-	)
+	);
 }
