@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";

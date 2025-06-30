@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
 import { useEffect, useCallback, useState } from "react"
@@ -76,7 +77,7 @@ const [hoveredConnection, setHoveredConnection] = useState<ConnectionData | null
     [onSelectHCP]
   )
 
-  const handleEdgeHover = useCallback((edgeId: string | null, connectionData?: any) => {
+  const handleEdgeHover = useCallback((edgeId: string | null, connectionData?: ConnectionData | null) => {
     setHoveredConnection(connectionData || null)
   }, [])
 
