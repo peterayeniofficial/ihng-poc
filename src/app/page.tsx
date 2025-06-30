@@ -14,6 +14,8 @@ export default function Page() {
 	const [searchTerm, setSearchTerm] = useState("")
 	const [selectedHCP, setSelectedHCP] = useState<HCP | null>(null)
 	const [focusedHCPId, setFocusedHCPId] = useState<string | null>(null)
+	const [searchNotFound, setSearchNotFound] = useState(false)
+
 
 	// Handles Enter-to-search logic
 	const handleSearch = useCallback(() => {
@@ -26,6 +28,11 @@ export default function Page() {
 		if (found) {
 			setSelectedHCP(found)
 			setFocusedHCPId(found.id)
+			setSearchNotFound(false)
+		} else {
+			setSelectedHCP(null)
+			setFocusedHCPId(null)
+			setSearchNotFound(true)
 		}
 	}, [searchTerm])
 
@@ -44,11 +51,17 @@ export default function Page() {
 
 					<Search
 						value={searchTerm}
-						onChange={setSearchTerm}
+						onChange={(val) => {
+							setSearchTerm(val)
+							setSearchNotFound(false) // clear not-found state as user types
+						}}
 						onSearch={handleSearch}
 						onClear={clearSearch}
 						placeholder="Search for an HCP by name..."
 					/>
+					{searchNotFound && (
+						<p className="text-sm text-red-600 mt-2">No HCP found matching “{searchTerm}”.</p>
+					)}
 
 					<section>
 						<h2 className="text-lg font-semibold mb-4">PeerSpace</h2>
